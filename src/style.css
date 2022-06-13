@@ -43,7 +43,8 @@ body {
 }
 
 footer {
-margin-top: auto;
+    margin-top: auto;
+    padding: 8px 0px 8px 0px;
 }
 
 .footer-content {
