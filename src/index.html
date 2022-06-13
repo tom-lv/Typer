@@ -22,7 +22,13 @@
                 <span class="navbar-text">Language: English</span>
                 <!-- END -->
                 <!-- Placeholder -->
-                <span class="navbar-text">Words: 10, 25, 50, 100</span>
+                <div class="word-count-selector">
+                    <span class="navbar-text">Words: </span>
+                    <button class="word-count-button" onclick="setWordCount(10)">10,</button>
+                    <button class="word-count-button" onclick="setWordCount(25)">25,</button>
+                    <button class="word-count-button" onclick="setWordCount(50)">50,</button>
+                    <button class="word-count-button" onclick="setWordCount(100)">100</button>
+                </div>
                 <!-- END -->
             </div>
         </div>
@@ -41,9 +47,9 @@
                 </div>
                 <div class="typing-area border">
                     <!-- Display words -->
-                    <p>Text here.</p>
+                    <p></p>
                 </div>
-                <button class="btn reset-button">Reset</button>
+                <button class="btn btn-dark reset-button">Reset</button>
             </div>
         </div>
     </main>
