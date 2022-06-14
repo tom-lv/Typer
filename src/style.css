@@ -29,10 +29,6 @@ body {
     background-color: transparent; 
 }
 
-#language-button {
-    color: #9256ED;
-}
-
 .navbar-left {
     display: flex;
     flex-direction: row;

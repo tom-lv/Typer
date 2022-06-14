@@ -1,4 +1,5 @@
 let wordCount; // num. of words typing test words
+let wordLanguage;
 
 // fetch json data
 function getText() {
@@ -21,7 +22,6 @@ function displayText(data) {
 }
 
 function setWordCount(value) {
-    // set wordCount as argument passed to the function
     wordCount = value;
     // set color:black all button elements under .word-count-selector
     document.querySelectorAll('.word-count-selector > button').forEach(e => (e.style.color = 'black'));
@@ -30,5 +30,15 @@ function setWordCount(value) {
     getText(); // update text
 }
 
+function setLanguage(language) {
+    wordLanguage = language;
+    // set color:black all button elements under .language-selector
+    document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'black'));
+    // set active button color:purple
+    document.querySelector(`#l-${language}`).style.color = '#9256ED';
+    // change language
+}
+
+setLanguage("en");
 setWordCount(50); // default value
 getText(); // display text
