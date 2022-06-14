@@ -1,24 +1,49 @@
+const typingArea = document.querySelector('.typing-area');
+
 let wordNum; // num. of words typing test words
-let wordLanguage;
+let wordLanguage; // typing test language
+let randomWordList = []; // store random list of words
+let iteration; // keep track of loop iterations
 
 // fetch json data
 function getText() {
     fetch('./english.json')
         .then(response => response.json())
         .then(json => {
-            //pass json file to displayText()
-            displayText(json);
+            randomiseWords(json);
         })
         .catch(err => console.error(err));
 }
 
 // displayed fetched text
 function displayText(data) {
-    const typingArea = document.querySelector('.typing-area p');
-    typingArea.innerHTML = ""; //make sure area is empty
+    iteration = 0; // reset iteration
+    typingArea.innerHTML = ""; // make sure typing area is empty
+    // loop for each word and character
+    data.forEach(word => {
+        word.split('').forEach(char => {
+            let span = document.createElement('span');
+            span.innerHTML = char;
+            typingArea.appendChild(span);
+        });
+        iteration++;
+        // include space after each word expect last
+        if (iteration != wordNum) {
+            let span = document.createElement('span');
+            span.innerHTML = ' ';
+            typingArea.appendChild(span);
+        }
+    });
+}
+
+// randomise fetched words
+function randomiseWords(data) {
+    randomWordList = []; // make sure array is empty
     for (let i = 0; i < wordNum; i++) {
-        typingArea.innerHTML += data.words[i] + " ";
+        let randomIndex = Math.floor(Math.random() * data.words.length);
+        randomWordList.push(data.words[randomIndex]);
     }
+    displayText(randomWordList);
 }
 
 function setWordNum(value) {
@@ -39,6 +64,10 @@ function setLanguage(language) {
     // change language
 }
 
-setLanguage("en");
-setWordNum(50); // default value
-getText(); // display text
+function resetApplication() {
+    setWordNum(wordNum);
+}
+
+// Initial state
+setLanguage("en"); // default language
+setWordNum(100); // default value
