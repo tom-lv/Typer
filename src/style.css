@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
 * {
-    background-color: #FAFAFA;
     font-family: 'Roboto Mono', monospace;
 }
 
@@ -23,10 +22,11 @@ body {
     padding: 0;
 }
 
-.word-count-button {
+.navbar-button {
     border: 0;
     font-size: .9em;
     padding: 0 0 0 0;
+    background-color: transparent; 
 }
 
 .navbar-left {
@@ -42,6 +42,11 @@ body {
 }
 
 /* main */
+.hud {
+    display: flex;
+    justify-content: center;
+}
+
 .typing-test {
     display: flex;
     flex-direction: column;

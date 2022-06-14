@@ -18,15 +18,16 @@
                 <span class="navbar-text">A minimalistic typing test by <a href="https://github.com/tom-lv/">tom-lv</a></span>
             </div>
             <div class="navbar-right">
-                <!-- Placeholder -->
-                <span class="navbar-text">Language: English</span>
-                <!-- END -->
+                <div class="language-selector">
+                    <span class="navbar-text">Language: </span>
+                    <button class="navbar-button">English</button>
+                </div>
                 <div class="word-count-selector">
                     <span class="navbar-text">Words: </span>
-                    <button class="word-count-button" onclick="setWordCount(10)">10,</button>
-                    <button class="word-count-button" onclick="setWordCount(25)">25,</button>
-                    <button class="word-count-button" onclick="setWordCount(50)">50,</button>
-                    <button class="word-count-button" onclick="setWordCount(100)">100</button>
+                    <button class="navbar-button" id="wc-10" onclick="setWordCount(10)">10,</button>
+                    <button class="navbar-button" id="wc-25" onclick="setWordCount(25)">25,</button>
+                    <button class="navbar-button" id="wc-50" onclick="setWordCount(50)">50,</button>
+                    <button class="navbar-button" id="wc-100" onclick="setWordCount(100)">100</button>
                 </div>
             </div>
         </div>
