@@ -47,9 +47,44 @@ body {
     justify-content: center;
 }
 
+.hud p {
+    font-size: 1.5em;
+}
+
 .typing-test {
     display: flex;
     flex-direction: column;
+}
+
+.typing-area span {
+    font-size: 1.5em;
+    color: rgba(0, 0, 0, 0.55) ;
+    /* rgba(0, 0, 0, 0.55) 
+    #8D8D8D*/
+}
+
+.typing-area span.active {
+    color: #9256ED;
+    animation: blink 1s ease-in-out infinite;
+    animation-delay: 2s;
+}
+
+@keyframes blink{
+    50%{ 
+      opacity: 1%; 
+    }
+  }
+
+.typing-area span.correct {
+    color: green;
+}
+
+.typing-area span.incorrect {
+    color: red;
+}
+
+.reset-button {
+    margin-top: 16px;
 }
 
 /* footer */
