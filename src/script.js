@@ -17,6 +17,16 @@ function getText() {
         .catch(err => console.error(err));
 }
 
+// randomise fetched words
+function randomiseWords(data) {
+    randomWordList = []; // make sure array is empty
+    for (let i = 0; i < wordCount; i++) {
+        let randomIndex = Math.floor(Math.random() * data.words.length);
+        randomWordList.push(data.words[randomIndex]);
+    }
+    displayText(randomWordList);
+}
+
 // display fetched text
 function displayText(data) {
     iteration = 0; // reset iteration
@@ -37,42 +47,12 @@ function displayText(data) {
             typingArea.appendChild(span);
         }
     });
-    // set first span char as 'active'
-    typingArea.querySelectorAll('.typing-area > span')[0].classList.add('active');
-}
-
-// randomise fetched words
-function randomiseWords(data) {
-    randomWordList = []; // make sure array is empty
-    for (let i = 0; i < wordCount; i++) {
-        let randomIndex = Math.floor(Math.random() * data.words.length);
-        randomWordList.push(data.words[randomIndex]);
-    }
-    displayText(randomWordList);
+    typingArea.querySelectorAll('.typing-area > span')[0].classList.add('active'); // set first span char as 'active'
 }
 
 function startApplication() {
     document.addEventListener('keydown', backspace);
     document.addEventListener('keypress', keyboard);
-}
-
-function setWordCount(value) {
-    wordCount = value;
-    // set color:black to all button elements under .word-num-selector
-    document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'black'));
-    // set active button color:purple
-    document.querySelector(`#wc-${value}`).style.color = '#9256ED';
-    charIndex = 0; // reset charIndex
-    getText(); // update text
-}
-
-function setLanguage(language) {
-    wordLanguage = language;
-    // set color:black to all button elements under .language-selector
-    document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'black'));
-    // set active button color:purple
-    document.querySelector(`#l-${language}`).style.color = '#9256ED';
-    // change language
 }
 
 function resetApplication() {
@@ -100,6 +80,21 @@ function backspace(input) {
         typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.add('active'); // add active status to formerChar
         charIndex--; // decrement charIndex
    }
+}
+
+function setWordCount(num) {
+    wordCount = num; // num = userinput from onClick event
+    document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'black')); // set color:black to all button elements under .word-num-selector
+    document.querySelector(`#wc-${num}`).style.color = '#9256ED'; // set active button color:purple
+    charIndex = 0; // reset charIndex
+    getText(); // update text
+}
+
+function setLanguage(language) {
+    wordLanguage = language; // langauge = userinput from onClick event
+    document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'black')); // set color:black to all button elements under .language-selector
+    document.querySelector(`#l-${language}`).style.color = '#9256ED'; // set active button color:purple
+    // change language
 }
 
 // Initial state
