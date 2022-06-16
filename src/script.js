@@ -1,5 +1,6 @@
 const typingArea = document.querySelector('.typing-area');
 
+// Initialise dynamic variables
 let wordCount; // num. of words typing test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
@@ -20,8 +21,9 @@ function getText() {
 function displayText(data) {
     iteration = 0; // reset iteration
     typingArea.innerHTML = ""; // make sure typing area is empty
-    // loop for each word and character
+    // for each word
     data.forEach(word => {
+        // for each character
         word.split('').forEach(char => {
             let span = document.createElement('span');
             span.innerHTML = char;
@@ -50,37 +52,23 @@ function randomiseWords(data) {
 }
 
 function startApplication() {
-    document.addEventListener('keypress', e => {
-        console.log(e.key);
-        console.log(typingArea.querySelector('.active').textContent);
-        let activeChar = typingArea.querySelector('.active').textContent;
-        if (e.key === activeChar) {
-            document.querySelector('.active').classList.add('correct');
-            document.querySelector('.active').classList.remove('active');
-            charIndex++;
-            console.log(charIndex);
-        } else {
-            document.querySelector('.active').classList.add('incorrect');
-            document.querySelector('.active').classList.remove('active');
-            charIndex++;
-        }
-        typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active');
-    });
+    document.addEventListener('keydown', backspace);
+    document.addEventListener('keypress', keyboard);
 }
 
 function setWordCount(value) {
     wordCount = value;
-    // set color:black all button elements under .word-num-selector
+    // set color:black to all button elements under .word-num-selector
     document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'black'));
     // set active button color:purple
     document.querySelector(`#wc-${value}`).style.color = '#9256ED';
-    charIndex = 0;
+    charIndex = 0; // reset charIndex
     getText(); // update text
 }
 
 function setLanguage(language) {
     wordLanguage = language;
-    // set color:black all button elements under .language-selector
+    // set color:black to all button elements under .language-selector
     document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'black'));
     // set active button color:purple
     document.querySelector(`#l-${language}`).style.color = '#9256ED';
@@ -89,10 +77,32 @@ function setLanguage(language) {
 
 function resetApplication() {
     setWordCount(wordCount);
-    charIndex = 0;
+    charIndex = 0; // reset charIndex
+}
+
+function keyboard(input) {
+    let activeChar = typingArea.querySelector('.active').textContent;
+    if (input.key === activeChar) {
+        typingArea.querySelector('.active').classList.add('correct'); // if input key matches activeChar, result = correct
+        typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
+    } else {
+        typingArea.querySelector('.active').classList.add('incorrect'); // otherwise (if input key doesn't match activeChar), result = incorrect
+        typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
+    }
+    charIndex++; // increment charIndex
+    typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
+}
+
+function backspace(input) {
+    if (input.key === 'Backspace' & input.key !== ' ' & charIndex !== 0) {
+        typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.remove('active');  // remove active status of currentChar
+        typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.remove('correct', 'incorrect'); // remove correct/incorrect of formerChar
+        typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.add('active'); // add active status to formerChar
+        charIndex--; // decrement charIndex
+   }
 }
 
 // Initial state
 setLanguage("en"); // default language
 setWordCount(50); // default value
-startApplication();
+startApplication(); // start App()
