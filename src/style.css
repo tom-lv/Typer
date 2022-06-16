@@ -57,16 +57,26 @@ body {
 }
 
 .typing-area span {
+    position: relative;
     font-size: 1.5em;
     color: rgba(0, 0, 0, 0.55) ;
     /* rgba(0, 0, 0, 0.55) 
     #8D8D8D*/
 }
 
-.typing-area span.active {
-    color: #9256ED;
+.typing-area span.active::before {
+    content: '';
+    position: absolute;
+    border-top: 10px solid #9256ED;
+    border-right: 2px solid #9256ED;
+    border-left: 0.8px solid #9256ED;
+    border-bottom: 20px solid #9256ED;
+    border-radius: 5px 5px;
+    /* color: #9256ED; */
+    top: 1px;
+    left: -1px;
     animation: blink 1s ease-in-out infinite;
-    animation-delay: 2s;
+    animation-delay: 1.5s;
 }
 
 @keyframes blink{
