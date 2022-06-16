@@ -58,12 +58,17 @@ body {
 
 .typing-area span {
     font-size: 1.5em;
-    color: rgba(0, 0, 0, 0.55);
+    color: #8d8d8d;
+}
+
+.typing-area span.active {
+    color: #8d8d8d !important;
 }
 
 .typing-area span.active::before {
     content: '';
-    border-left: 3px solid #9256ED;
+    border-left: 3px solid;
+    border-color: #9256ED;
     border-radius: 3px;
     animation: blink 1s ease-in-out infinite;
     animation-delay: 1.5s;

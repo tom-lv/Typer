@@ -5,7 +5,7 @@ let wordCount; // num. of words typing test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
 let iteration; // keep track of loop iterations
-let charIndex = 0; // keep track of chars
+let charIndex = 0; // keep track of typed chars
 
 // fetch json data
 function getText() {
@@ -40,7 +40,7 @@ function displayText(data) {
             typingArea.appendChild(span);
         });
         iteration++;
-        // include space after each word expect last
+        // include space after each word except last
         if (iteration != wordCount) {
             let span = document.createElement('span');
             span.innerHTML = ' ';
