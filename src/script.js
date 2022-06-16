@@ -74,6 +74,7 @@ function setWordCount(value) {
     document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'black'));
     // set active button color:purple
     document.querySelector(`#wc-${value}`).style.color = '#9256ED';
+    charIndex = 0;
     getText(); // update text
 }
 
