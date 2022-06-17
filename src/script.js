@@ -4,8 +4,7 @@ const typingArea = document.querySelector('.typing-area');
 let wordCount; // num. of words typing test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
-let iteration; // keep track of loop iterations
-let charIndex = 0; // keep track of typed chars
+let charIndex; // keep track of typed chars
 
 // fetch json data
 function getText() {
@@ -18,30 +17,28 @@ function getText() {
 }
 
 // randomise fetched words
-function randomiseWords(data) {
+function randomiseWords(wordList) {
     randomWordList = []; // make sure array is empty
     for (let i = 0; i < wordCount; i++) {
-        let randomIndex = Math.floor(Math.random() * data.words.length);
-        randomWordList.push(data.words[randomIndex]);
+        let randomIndex = Math.floor(Math.random() * wordList.words.length);
+        randomWordList.push(wordList.words[randomIndex]);
     }
     displayText(randomWordList);
 }
 
 // display fetched text
-function displayText(data) {
-    iteration = 0; // reset iteration
+function displayText(randomWordList) {
     typingArea.innerHTML = ""; // make sure typing area is empty
     // for each word
-    data.forEach(word => {
+    randomWordList.forEach(word => {
         // for each character
         word.split('').forEach(char => {
             let span = document.createElement('span');
             span.innerHTML = char;
             typingArea.appendChild(span);
         });
-        iteration++;
         // include space after each word except last
-        if (iteration != wordCount) {
+        if (wordCount != wordCount - 1) {
             let span = document.createElement('span');
             span.innerHTML = ' ';
             typingArea.appendChild(span);
@@ -60,21 +57,23 @@ function resetApplication() {
     charIndex = 0; // reset charIndex
 }
 
-function keyboard(input) {
+
+function keyboard(userInput) {
     let activeChar = typingArea.querySelector('.active').textContent;
-    if (input.key === activeChar) {
-        typingArea.querySelector('.active').classList.add('correct'); // if input key matches activeChar, result = correct
+    if (userInput.key === activeChar) {
+        typingArea.querySelector('.active').classList.add('correct'); // if userInput matches activeChar, result = correct
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
+        // need to track correct characters
     } else {
-        typingArea.querySelector('.active').classList.add('incorrect'); // otherwise (if input key doesn't match activeChar), result = incorrect
+        typingArea.querySelector('.active').classList.add('incorrect'); // otherwise (if userInput doesn't match activeChar), result = incorrect
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
     }
     charIndex++; // increment charIndex
     typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
 }
 
-function backspace(input) {
-    if (input.key === 'Backspace' & input.key !== ' ' & charIndex !== 0) {
+function backspace(userInput) {
+    if (userInput.key === 'Backspace' & userInput.key !== ' ' & charIndex !== 0) {
         typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.remove('active');  // remove active status of currentChar
         typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.remove('correct', 'incorrect'); // remove correct/incorrect of formerChar
         typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.add('active'); // add active status to formerChar
