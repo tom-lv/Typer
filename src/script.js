@@ -4,8 +4,9 @@ const typingArea = document.querySelector('.typing-area');
 let wordCount; // num. of test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
-let charIndex; // keep track of typed chars
-let lastWord; 
+let charIndex; // track typed chars
+let wordIndex; // track num. of words displayed
+let mistake = 0; // track num. of mistakes
 
 // fetch json data
 function getText() {
@@ -29,7 +30,7 @@ function randomiseWords(wordList) {
 
 // display fetched text
 function displayText(randomWordList) {
-    lastWord = 0;
+    wordIndex = 0; // reset wordIndex
     typingArea.innerHTML = ""; // make sure typing area is empty
     // for each word
     randomWordList.forEach(word => {
@@ -39,9 +40,9 @@ function displayText(randomWordList) {
             span.innerHTML = char;
             typingArea.appendChild(span);
         });
-        lastWord++; 
+        wordIndex++; 
         // include space after each word except last
-        if (wordCount !== lastWord) {
+        if (wordIndex !== wordCount) {
             let span = document.createElement('span');
             span.innerHTML = ' ';
             typingArea.appendChild(span);
@@ -56,20 +57,21 @@ function startApplication() {
 }
 
 function resetApplication() {
-    setWordCount(wordCount);
+    setWordCount(wordCount); // reset word list in typing area
     charIndex = 0; // reset charIndex
 }
 
 
 function keyboard(userInput) {
+    // when charIndex > 0 (this is a good way to track when the test has started)
     let activeChar = typingArea.querySelector('.active').textContent;
     if (userInput.key === activeChar) {
         typingArea.querySelector('.active').classList.add('correct'); // if userInput matches activeChar, result = correct
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
-        // need to track correct characters
     } else {
         typingArea.querySelector('.active').classList.add('incorrect'); // otherwise (if userInput doesn't match activeChar), result = incorrect
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
+        mistake++; // increment when a mistake is made
     }
     charIndex++; // increment charIndex
     typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
@@ -77,7 +79,11 @@ function keyboard(userInput) {
 }
 
 function backspace(userInput) {
+    let previousCharValue = typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.value;
     if (userInput.key === 'Backspace' & userInput.key !== ' ' & charIndex !== 0) {
+        if (previousCharValue == 'incorrect') {
+            mistake--; // decrement when a mistake is corrected
+        }
         typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.remove('active');  // remove active status of currentChar
         typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.remove('correct', 'incorrect'); // remove correct/incorrect of formerChar
         typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.add('active'); // add active status to formerChar
