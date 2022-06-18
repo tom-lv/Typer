@@ -1,10 +1,11 @@
 const typingArea = document.querySelector('.typing-area');
 
 // Initialise dynamic variables
-let wordCount; // num. of words typing test words
+let wordCount; // num. of test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
 let charIndex; // keep track of typed chars
+let lastWord; 
 
 // fetch json data
 function getText() {
@@ -28,6 +29,7 @@ function randomiseWords(wordList) {
 
 // display fetched text
 function displayText(randomWordList) {
+    lastWord = 0;
     typingArea.innerHTML = ""; // make sure typing area is empty
     // for each word
     randomWordList.forEach(word => {
@@ -37,8 +39,9 @@ function displayText(randomWordList) {
             span.innerHTML = char;
             typingArea.appendChild(span);
         });
+        lastWord++; 
         // include space after each word except last
-        if (wordCount != wordCount - 1) {
+        if (wordCount !== lastWord) {
             let span = document.createElement('span');
             span.innerHTML = ' ';
             typingArea.appendChild(span);
@@ -70,6 +73,7 @@ function keyboard(userInput) {
     }
     charIndex++; // increment charIndex
     typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
+    // need to calculate wpm, cpm and acc
 }
 
 function backspace(userInput) {
