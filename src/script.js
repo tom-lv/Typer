@@ -1,12 +1,17 @@
 const typingArea = document.querySelector('.typing-area');
 
-// initialise dynamic variables
+// initialise dynamic variables 
 let wordCount; // num. of test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
+
 let charIndex; // track typed chars
 let wordIndex; // track num. of words displayed
 let mistake = 0; // track num. of mistakes
+
+let userTyping = false;
+let timer;
+let elapsedTime = 0;
 
 // fetch json data
 function getText() {
@@ -58,6 +63,9 @@ function startApplication() {
 
 function resetApplication() {
     setWordCount(wordCount); // reset displayed text
+    clearInterval(timer);
+    userTyping = false;
+    elapsedTime = 0;
     charIndex = 0; // reset charIndex
 }
 
@@ -66,6 +74,11 @@ function keyboard(userInput) {
     // when charIndex > 0 (this is a good way to track when the test has started)
     let activeChar = typingArea.querySelector('.active').textContent;
 
+    if (!userTyping) {
+        timer = setInterval(initTimer, 1000);
+        userTyping = true;
+    }
+    
     if (userInput.key === activeChar) {
         typingArea.querySelector('.active').classList.add('correct'); // if userInput matches activeChar, result = correct
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
@@ -78,6 +91,11 @@ function keyboard(userInput) {
     typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
     // need to calculate wpm, cpm and acc
     
+}
+
+function initTimer() {
+    elapsedTime += 1;
+    console.log(elapsedTime);
 }
 
 function backspace(userInput) {
