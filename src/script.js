@@ -1,6 +1,6 @@
 const typingArea = document.querySelector('.typing-area');
 
-// Initialise dynamic variables
+// initialise dynamic variables
 let wordCount; // num. of test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
@@ -57,7 +57,7 @@ function startApplication() {
 }
 
 function resetApplication() {
-    setWordCount(wordCount); // reset word list in typing area
+    setWordCount(wordCount); // reset displayed text
     charIndex = 0; // reset charIndex
 }
 
@@ -65,6 +65,7 @@ function resetApplication() {
 function keyboard(userInput) {
     // when charIndex > 0 (this is a good way to track when the test has started)
     let activeChar = typingArea.querySelector('.active').textContent;
+
     if (userInput.key === activeChar) {
         typingArea.querySelector('.active').classList.add('correct'); // if userInput matches activeChar, result = correct
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
@@ -76,6 +77,7 @@ function keyboard(userInput) {
     charIndex++; // increment charIndex
     typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
     // need to calculate wpm, cpm and acc
+    
 }
 
 function backspace(userInput) {
@@ -106,7 +108,7 @@ function setLanguage(language) {
     // change language
 }
 
-// Initial state
+// initial state
 setLanguage("en"); // default language
 setWordCount(50); // default value
 startApplication(); // start App()
