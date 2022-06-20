@@ -62,11 +62,11 @@ function startApplication() {
 }
 
 function resetApplication() {
-    setWordCount(wordCount); // reset displayed text
     clearInterval(timer);
     userTyping = false;
     elapsedTime = 0;
-    charIndex = 0; // reset charIndex
+    charIndex = 0;
+    getText();
 }
 
 
@@ -78,7 +78,7 @@ function keyboard(userInput) {
         timer = setInterval(initTimer, 1000);
         userTyping = true;
     }
-    
+
     if (userInput.key === activeChar) {
         typingArea.querySelector('.active').classList.add('correct'); // if userInput matches activeChar, result = correct
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
@@ -115,15 +115,14 @@ function setWordCount(num) {
     wordCount = num; // num = userinput from onClick event
     document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'black')); // set color:black to all button elements under .word-num-selector
     document.querySelector(`#wc-${num}`).style.color = '#9256ED'; // set active button color:purple
-    charIndex = 0; // reset charIndex
-    getText(); // update text
+    resetApplication();
 }
 
 function setLanguage(language) {
     wordLanguage = language; // langauge = userinput from onClick event
     document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'black')); // set color:black to all button elements under .language-selector
     document.querySelector(`#l-${language}`).style.color = '#9256ED'; // set active button color:purple
-    // change language
+    resetApplication();
 }
 
 // initial state
