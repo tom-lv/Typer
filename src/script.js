@@ -16,7 +16,7 @@ let elapsedTime = 0;
 
 // fetch json data
 function getText() {
-    fetch('./english.json')
+    fetch(`./languages/${wordLanguage}.json`)
         .then(response => response.json())
         .then(json => {
             randomiseWords(json);
@@ -139,9 +139,10 @@ function setLanguage(language) {
     document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'rgba(0, 0, 0, 0.55)')); // set color:black to all button elements under .language-selector
     document.querySelector(`#l-${language}`).style.color = '#ffbd30'; // set active button color:purple
     resetApplication();
+    console.log(wordLanguage);
 }
 
 // initial state
-setLanguage("en"); // default language
+setLanguage('english'); // default language
 setWordCount(50); // default value
 startApplication(); // start App()
