@@ -1,5 +1,5 @@
 const typingArea = document.querySelector('.typing-area');
-const hud = doucment.querySelector('.hud');
+const hud = document.querySelector('.hud');
 
 // initialise dynamic variables 
 let wordCount; // num. of test words
