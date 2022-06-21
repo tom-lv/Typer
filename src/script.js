@@ -71,6 +71,7 @@ function resetApplication() {
     charIndex = 0;
     mistakes = 0;
     getText();
+    document.getElementById('focus').focus();
 }
 
 function keyboard(userInput) {
