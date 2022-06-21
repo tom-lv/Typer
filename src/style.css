@@ -42,15 +42,23 @@ body {
 }
 
 /* main */
+/* hud */
 .hud {
     display: flex;
     justify-content: center;
 }
 
-.hud p {
+.hud span.main-text {
+    color: #8d8d8d;
     font-size: 1.5em;
 }
 
+.hud span.dynamic-text {
+    font-size: 1.5em;
+    color: #9256ED;;
+}
+
+/* typing-area */
 .typing-test {
     display: flex;
     flex-direction: column;

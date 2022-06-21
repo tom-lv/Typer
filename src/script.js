@@ -1,5 +1,5 @@
 const typingArea = document.querySelector('.typing-area');
-const hud = document.querySelector('.hud');
+const wpmTag = document.querySelector('#wpm');
 
 // initialise dynamic variables 
 let wordCount; // num. of test words
@@ -62,6 +62,7 @@ function startApplication() {
 
 function resetApplication() {
     clearInterval(timer);
+    wpmTag.innerHTML = 0;
     finished = false;
     userTyping = false;
     elapsedTime = 0;
@@ -79,9 +80,9 @@ function keyboard(userInput) {
         userTyping = true;
     }
     if (userInput.key === activeChar) {
+        nextSpan === 'finish' ? finished = true : finished = false;
         typingArea.querySelector('.active').classList.add('correct'); // if userInput matches activeChar, result = correct
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
-        nextSpan === 'finish' ? finished = true : finished = false;
     } else {
         typingArea.querySelector('.active').classList.add('incorrect'); // otherwise (if userInput doesn't match activeChar), result = incorrect
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
@@ -94,12 +95,14 @@ function keyboard(userInput) {
 
     let wpm = Math.round(((charIndex - mistakes) / 5) / elapsedTime * 60);
     wpm = wpm === Infinity || wpm < 0 || !wpm ? wpm = 0 : wpm;
+    wpmTag.innerHTML = wpm;
 }
 
 function initTimer() {
     if (finished !== true) {
         elapsedTime += 1;
         let wpm = Math.round(((charIndex - mistakes) / 5) / elapsedTime * 60);
+        wpmTag.innerHTML = wpm;
     } else {
         clearInterval(timer);
     }
