@@ -1,5 +1,6 @@
 const typingArea = document.querySelector('.typing-area');
 const wpmTag = document.querySelector('#wpm');
+const accTag = document.querySelector('#acc');
 
 // initialise dynamic variables 
 let wordCount; // num. of test words
@@ -63,6 +64,7 @@ function startApplication() {
 function resetApplication() {
     clearInterval(timer);
     wpmTag.innerHTML = 0;
+    accTag.innerHTML = 0 + '%';
     finished = false;
     userTyping = false;
     elapsedTime = 0;
@@ -74,6 +76,7 @@ function resetApplication() {
 function keyboard(userInput) {
     let activeChar = typingArea.querySelector('.active').textContent;
     let nextSpan = typingArea.querySelector('.active').nextSibling.classList.value;
+    let span = typingArea.querySelectorAll('.typing-area > span');
 
     if (!userTyping) {
         timer = setInterval(initTimer, 1000);
@@ -90,18 +93,20 @@ function keyboard(userInput) {
     }
     charIndex++; // increment charIndex
     if (finished !== true) {
-        typingArea.querySelectorAll('.typing-area > span')[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
+        span[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
     }
 
-    let wpm = Math.round(((charIndex - mistakes) / 5) / elapsedTime * 60);
+    let wpm = Math.floor(((charIndex - mistakes) / 5) / elapsedTime * 60);
     wpm = wpm === Infinity || wpm < 0 || !wpm ? wpm = 0 : wpm;
     wpmTag.innerHTML = wpm;
+    acc = Math.floor(((charIndex - mistakes) / charIndex) * 100);
+    accTag.innerHTML = acc + '%';
 }
 
 function initTimer() {
     if (finished !== true) {
         elapsedTime += 1;
-        let wpm = Math.round(((charIndex - mistakes) / 5) / elapsedTime * 60);
+        let wpm = Math.floor(((charIndex - mistakes) / 5) / elapsedTime * 60);
         wpmTag.innerHTML = wpm;
     } else {
         clearInterval(timer);
@@ -123,14 +128,14 @@ function backspace(userInput) {
 
 function setWordCount(num) {
     wordCount = num; // num = userinput from onClick event
-    document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'black')); // set color:black to all button elements under .word-num-selector
+    document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'rgba(0, 0, 0, 0.55)')); // set color:black to all button elements under .word-num-selector
     document.querySelector(`#wc-${num}`).style.color = '#9256ED'; // set active button color:purple
     resetApplication();
 }
 
 function setLanguage(language) {
     wordLanguage = language; // langauge = userinput from onClick event
-    document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'black')); // set color:black to all button elements under .language-selector
+    document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'rgba(0, 0, 0, 0.55)')); // set color:black to all button elements under .language-selector
     document.querySelector(`#l-${language}`).style.color = '#9256ED'; // set active button color:purple
     resetApplication();
 }

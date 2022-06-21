@@ -25,7 +25,7 @@
                     <button class="navbar-button" id="l-swe" onclick="setLanguage('swe')">Swedish</button>
                 </div>
                 <div class="word-num-selector">
-                    <span class="navbar-text">Words: </span>
+                    <span class="navbar-text right-text">Words: </span>
                     <button class="navbar-button" id="wc-10" onclick="setWordCount(10)">10,</button>
                     <button class="navbar-button" id="wc-25" onclick="setWordCount(25)">25,</button>
                     <button class="navbar-button" id="wc-50" onclick="setWordCount(50)">50,</button>
@@ -43,6 +43,9 @@
                 <div class="hud">
                     <span class="main-text">WPM:</span>
                     <span class="dynamic-text" id="wpm">0</span>
+                    <span class="main-text divider">/</span>
+                    <span class="main-text">ACC:</span>
+                    <span class="dynamic-text" id="acc">0%</span>
                 </div>
                 <div class="typing-area">
                     <!-- Display words -->
