@@ -142,5 +142,5 @@ function setLanguage(language) {
 
 // initial state
 setLanguage("en"); // default language
-setWordCount(10); // default value
+setWordCount(50); // default value
 startApplication(); // start App()
