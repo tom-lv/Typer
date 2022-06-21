@@ -50,7 +50,7 @@ body {
 .hud {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .hud span.main-text {
@@ -59,7 +59,7 @@ body {
 
 .hud span.dynamic-text {
     font-size: 1.5em;
-    color: #9256ED;;
+    color: #ffbd30;
 }
 
 .hud span.divider {
@@ -71,6 +71,7 @@ body {
 /* typing-area */
 .typing-test {
     display: flex;
+    align-items: center;
     flex-direction: column;
 }
 
@@ -86,7 +87,7 @@ body {
 .typing-area span.active::before {
     content: '';
     border-left: 3px solid;
-    border-color: #9256ED;
+    border-color: #ffbd30;
     border-radius: 3px;
     animation: blink 1s ease-in-out infinite;
     animation-delay: 1.5s;
