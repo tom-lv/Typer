@@ -7,18 +7,14 @@
 }
 
 body {
-    background-color: #F5F5F5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
 }
 
+/* header */
 /* navbar */
-header {
-    background-color: white;
-}
-
 .navbar-brand {
     font-size: 1.5em;
     /* background-color: #A970FF;
@@ -106,7 +102,7 @@ header {
     border-left: 3px solid;
     border-color: #A970FF;
     border-radius: 3px;
-    animation: blink 1s ease-in-out infinite;
+    animation: blink 1.1s ease-in-out infinite;
     animation-delay: 1.5s;
 }
 
@@ -117,11 +113,11 @@ header {
   }
 
 .typing-area span.correct {
-    color: green;
+    color: rgb(0, 128, 0);
 }
 
 .typing-area span.incorrect {
-    color: red;
+    color: rgb(255, 0, 0);
     text-decoration: underline;
 }
 
@@ -136,7 +132,6 @@ header {
 /* footer */
 footer {
     padding: 8px 0px 8px 0px;
-    background-color: white;
 }
 
 .footer-text-button {
