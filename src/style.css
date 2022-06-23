@@ -54,11 +54,11 @@ body {
 }
 
 .hud span.main-text {
-    font-size: 1.5em;
+    font-size: 1.4em;
 }
 
 .hud span.dynamic-text {
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: #ffbd30;
 }
 
@@ -80,7 +80,7 @@ body {
 }
 
 .typing-area span {
-    font-size: 1.5em;
+    font-size: 1.4em;
     color: rgba(0, 0, 0, 0.55);
 }
 
