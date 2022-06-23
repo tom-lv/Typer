@@ -7,6 +7,7 @@
 }
 
 body {
+    background-color: #F5F5F5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -14,8 +15,18 @@ body {
 }
 
 /* navbar */
+header {
+    background-color: white;
+}
+
 .navbar-brand {
     font-size: 1.5em;
+    /* background-color: #A970FF;
+    border-radius: 5%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-right: 1px;
+    padding-left: 1px; */
 }
 
 .navbar-text {
@@ -61,7 +72,7 @@ body {
 
 .hud span.dynamic-text {
     font-size: 1.4em;
-    color: #ffbd30;
+    color: #A970FF;
 }
 
 .hud span.divider {
@@ -93,7 +104,7 @@ body {
 .typing-area span.active::before {
     content: '';
     border-left: 3px solid;
-    border-color: #ffbd30;
+    border-color: #A970FF;
     border-radius: 3px;
     animation: blink 1s ease-in-out infinite;
     animation-delay: 1.5s;
@@ -123,6 +134,11 @@ body {
 }
 
 /* footer */
+footer {
+    padding: 8px 0px 8px 0px;
+    background-color: white;
+}
+
 .footer-text-button {
     font-size: .9em;
     text-decoration: none;
@@ -131,10 +147,6 @@ body {
 
 .footer-text {
     padding: 0;
-}
-
-footer {
-    padding: 8px 0px 8px 0px;
 }
 
 .footer-content {

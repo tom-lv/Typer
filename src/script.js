@@ -134,14 +134,14 @@ function initTimer() {
 function setWordCount(num) {
     wordCount = num; // num = userinput from onClick event
     document.querySelectorAll('.word-num-selector > button').forEach(e => (e.style.color = 'rgba(0, 0, 0, 0.55)')); // set color:black to all button elements under .word-num-selector
-    document.querySelector(`#wc-${num}`).style.color = '#ffbd30'; // set active button color:purple
+    document.querySelector(`#wc-${num}`).style.color = '#A970FF'; // set active button color:purple
     resetApplication();
 }
 
 function setLanguage(language) {
     wordLanguage = language; // langauge = userinput from onClick event
     document.querySelectorAll('.language-selector > button').forEach(e => (e.style.color = 'rgba(0, 0, 0, 0.55)')); // set color:black to all button elements under .language-selector
-    document.querySelector(`#l-${language}`).style.color = '#ffbd30'; // set active button color:purple
+    document.querySelector(`#l-${language}`).style.color = '#A970FF'; // set active button color:purple
     resetApplication();
 }
 
