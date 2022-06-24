@@ -91,6 +91,7 @@ function keyboard(userInput) {
         typingArea.querySelector('.active').classList.add('correct'); // if userInput matches activeChar, result = correct
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
     } else {
+        nextSpan === 'finish' ? finished = true : finished = false;
         typingArea.querySelector('.active').classList.add('incorrect'); // otherwise (if userInput doesn't match activeChar), result = incorrect
         typingArea.querySelector('.active').classList.remove('active'); // then remove activeChar's active status
         mistakes++; // increment when a mistake is made
