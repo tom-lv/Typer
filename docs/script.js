@@ -3,13 +3,13 @@ const typingArea = document.querySelector('.typing-area');
 const wpmTag = document.querySelector('#wpm');
 const accTag = document.querySelector('#acc');
 
-// initialise display text variables 
+// initialise text variables 
 let wordCount; // num. of test words
 let wordLanguage; // typing test language
 let randomWordList = []; // store random list of words
 let wordIndex; // track num. of words displayed
 
-// initialise typing test variables
+// initialise test variables
 let userTyping = false; 
 let finished = false; 
 let charIndex; // track typed chars
