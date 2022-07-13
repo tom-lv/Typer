@@ -101,16 +101,17 @@ function keyboard(userInput) {
         span[charIndex].classList.add('active'); //after correct/incorrect assignment, next char = active
     }
 
-    // calculate wpm & acc
+    // calculate & display wpm
     let wpm = Math.floor(((charIndex - mistakes) / 5) / elapsedTime * 60);
     wpm = wpm === Infinity || wpm < 0 || !wpm ? wpm = 0 : wpm;
     wpmTag.innerHTML = wpm;
+    // calculate & display acc
     acc = Math.floor(((charIndex - mistakes) / charIndex) * 100);
     accTag.innerHTML = acc + '%';
 }
 
 function backspace(userInput) {
-    let previousCharValue = typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.value;
+    let previousCharValue = typingArea.querySelectorAll('.typing-area > span')[charIndex - 1].classList.value; // store the previous char in variable
     if (userInput.key === 'Backspace' & userInput.key !== ' ' & charIndex !== 0 & finished !== true) {
         if (previousCharValue == 'incorrect') {
             mistakes--; // decrement when a mistake is corrected
@@ -124,11 +125,11 @@ function backspace(userInput) {
 
 function initTimer() {
     if (finished !== true) {
-        elapsedTime += 1;
-        let wpm = Math.floor(((charIndex - mistakes) / 5) / elapsedTime * 60);
-        wpmTag.innerHTML = wpm;
+        elapsedTime += 1; // every second add 1
+        let wpm = Math.floor(((charIndex - mistakes) / 5) / elapsedTime * 60); // calculate wpm
+        wpmTag.innerHTML = wpm; // display wpm
     } else {
-        clearInterval(timer);
+        clearInterval(timer); 
     }
 }
 
